@@ -6,7 +6,7 @@ import geobuf from "geobuf";
 import Pbf from "pbf";
 const $ = jQuery;
 
-interface FranceChoroMapOpts {
+export interface FranceChoroMapOpts {
   width?: string;
   height?: string;
   data: string;
@@ -16,7 +16,7 @@ interface FranceChoroMapOpts {
   mapResolver?: (name:string)=>string,
 }
 
-interface MapData {
+export interface MapData {
   data: Record<string, number>;
   colors: string[]
   labels: string[],

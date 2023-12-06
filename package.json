@@ -1,15 +1,17 @@
 {
   "name": "grippenet-maps",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "files": [
     "dist"
   ],
   "main": "./dist/maps.umd.js",
   "module": "./dist/maps.es.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/maps.es.js",
-      "require": "./dist/maps.umd.js"
+      "require": "./dist/maps.umd.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
