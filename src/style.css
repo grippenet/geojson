@@ -1,0 +1,26 @@
+
+.map-figure {
+    margin: 1em auto;
+    padding: 1em;
+    border: 1px solid #EEE;
+}
+
+.map-legend ul, .map-legend li {
+    display: inline-block;
+}
+
+.map-legend ul {
+    padding: .3em;
+}
+
+.map-legend .color {
+ display: inline-block;
+ width: 1em;
+ height: 1em;   
+}
+
+.map-legend .label {
+    padding: .1em;
+    margin-left: .8em;
+    vertical-align: text-bottom;
+}

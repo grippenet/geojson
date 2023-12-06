@@ -1,0 +1,36 @@
+{
+  "name": "grippenet-maps",
+  "version": "0.1.0",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/maps.umd.js",
+  "module": "./dist/maps.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/maps.es.js",
+      "require": "./dist/maps.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/geobuf": "^3.0.4",
+    "@types/jquery": "^3.5.27",
+    "@types/leaflet": "^1.9.8",
+    "@types/pbf": "^3.0.5",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.6.3"
+  },
+  "dependencies": {
+    "geobuf": "^3.0.2",
+    "leaflet": "^1.9.4"
+  },
+  "peerDependencies": {
+    "jquery": "3.7.1"
+  }
+}
