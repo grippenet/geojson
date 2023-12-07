@@ -15,12 +15,14 @@ export interface FranceChoroMapOpts {
   layout: string; // Name of the map layout to use
   flavor?: string;
   selectorLabel?:string; // Label to use for color selector if shown
+  defaultOpacity: number;
 }
 
 export interface ColorPalette {
   name?: string; // Name of palette if colors is empty
   label?: string;
   colors?: string[] // List of colors
+  opacity?:number;
 }
 
 export interface MapData {
@@ -214,11 +216,18 @@ export class ChoroMap {
     }
 
     let colors: string[];
+    let fillOpacity = 0.6;
+    if(this.opts.defaultOpacity) {
+      fillOpacity = this.opts.defaultOpacity;
+    }
 
     try {
       const p = this.palettes[this.palette];
       if(p && p.colors) {
         colors = p.colors;
+        if(p.opacity) {
+          fillOpacity = p.opacity;
+        }
       } else {
         console.warn("No useable palette found");
         return;
@@ -238,7 +247,7 @@ export class ChoroMap {
           color = colors[v - 1];
         }
       }
-        return { 'color': color, 'stroke': false, 'fillOpacity': 0.6 }
+        return { 'color': color, 'stroke': false, 'fillOpacity': fillOpacity }
       });
 
       const $legend = this.element.find('.map-legend');
