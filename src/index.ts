@@ -15,7 +15,7 @@ export interface FranceChoroMapOpts {
   layout: string; // Name of the map layout to use
   flavor?: string;
   selectorLabel?:string; // Label to use for color selector if shown
-  defaultOpacity: number;
+  defaultOpacity?: number; // Global default opacity for data layer
 }
 
 export interface ColorPalette {
@@ -31,6 +31,7 @@ export interface MapData {
   labels: string[]
   palettes?: ColorPalette[]
   layout: string
+  defaultOpacity?: number;
 }
 
 const get_palette = (name:string, length:number) =>{
@@ -204,7 +205,6 @@ export class ChoroMap {
   }
 
   
-
   updateStyle() {
     
     if(!this.data) {
@@ -215,11 +215,18 @@ export class ChoroMap {
       return;
     }
 
-    let colors: string[];
-    let fillOpacity = 0.6;
-    if(this.opts.defaultOpacity) {
-      fillOpacity = this.opts.defaultOpacity;
+    const defaultOpacity = () => {
+      if(this.data?.defaultOpacity) {
+        return this.data.defaultOpacity;
+      }
+      if(this.opts.defaultOpacity) {
+        return this.opts.defaultOpacity;
+      }
+      return 0.6;
     }
+
+    let colors: string[];
+    let fillOpacity = defaultOpacity();
 
     try {
       const p = this.palettes[this.palette];
