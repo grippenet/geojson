@@ -31,8 +31,6 @@ export interface MapData {
   layout: string
 }
 
-const identifyResolver = (name:string)=> name;
-
 const get_palette = (name:string, length:number) =>{
   let p = colorPalettes.palettes[name] ?? undefined;
   if(!p) {
