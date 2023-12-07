@@ -1,0 +1,28 @@
+{
+    "layout": "departement",
+    "data": {
+        "32":2,
+        "75": 3,
+        "44": 1
+    },
+    "colors": 5,
+    "labels": [
+        "0 - 5",
+        "5 - 15",
+        "15 - 20",
+        "20 - 25",
+        ">= 25"
+    ],
+    "palettes": [
+        {"name": "default", "colors": [
+            "#440154FF",
+            "#3B528BFF",
+            "#21908CFF",
+            "#5DC863FF",
+            "#FDE725FF"
+        ] 
+        },
+        {"name": "BuPu"},
+        {"name": "Blues"}
+    ]
+}

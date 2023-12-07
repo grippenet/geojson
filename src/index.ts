@@ -4,26 +4,44 @@ import 'leaflet/dist/leaflet.css';
 import { Feature, Geometry } from "geojson";
 import geobuf from "geobuf";
 import Pbf from "pbf";
+import { colorPalettes } from "./colors";
+
 const $ = jQuery;
 
 export interface FranceChoroMapOpts {
   width?: string;
   height?: string;
-  data: string;
-  layout: string;
+  data: string; // Name of the data
+  layout: string; // Name of the map layout to use
   flavor?: string;
-  dataResolver?: (name:string)=>string,
-  mapResolver?: (name:string)=>string,
+  selectorLabel?:string; // Label to use for color selector if shown
+}
+
+export interface ColorPalette {
+  name?: string; // Name of palette if colors is empty
+  label?: string;
+  colors?: string[] // List of colors
 }
 
 export interface MapData {
-  data: Record<string, number>;
-  colors: string[]
-  labels: string[],
+  data: Record<string, number>
+  colors: number|string[]
+  labels: string[]
+  palettes?: ColorPalette[]
   layout: string
 }
 
 const identifyResolver = (name:string)=> name;
+
+const get_palette = (name:string, length:number) =>{
+  let p = colorPalettes.palettes[name] ?? undefined;
+  if(!p) {
+    return undefined;
+  }
+    const cc = p[length] ?? undefined;
+    return cc;
+}
+
 
 export class ChoroMap {
 
@@ -35,23 +53,33 @@ export class ChoroMap {
 
   element: JQuery;
 
+  dataValues: Map<string, number>;
+
+  palette: number; // Current palette
+
+  palettes: ColorPalette[];
+
+  layer?: L.GeoJSON;
+
   constructor(element: JQuery, opts: FranceChoroMapOpts) {
     this.opts = opts;
     this.element = element;
+    this.dataValues = new Map();
+    this.palette = 0;
+    this.palettes = [];
     element.data('map', this);
   }
 
   loadLayout(): Promise<GeoJSON.GeoJsonObject> {
-    const mapResolver = this.opts.mapResolver ?? identifyResolver;
     const flavor = this.opts.flavor ?? 'geojson';
     if(flavor =='geojson') {
       return new Promise((resolve, reject)=> {
-        const loader: JQuery.jqXHR<GeoJSON.GeoJsonObject> = $.getJSON(mapResolver(this.opts.layout));
+        const loader: JQuery.jqXHR<GeoJSON.GeoJsonObject> = $.getJSON(this.opts.layout);
         return loader.then(resolve).catch(reject);
       });
     } else {
       return new Promise((resolve, reject)=> {
-         const url = mapResolver(this.opts.layout);
+         const url = this.opts.layout;
          const p = fetch(url);
          p.then(r=>{
             r.arrayBuffer().then(data => {
@@ -65,23 +93,51 @@ export class ChoroMap {
 
 
   load() {
-    
-    const dataResolver = this.opts.dataResolver ?? identifyResolver;
-    
-    const dataLoader: JQuery.jqXHR<MapData> = $.getJSON(dataResolver(this.opts.data));
-
+    const dataLoader: JQuery.jqXHR<MapData> = $.getJSON(this.opts.data);
     const layoutLoader = this.loadLayout();
     
     Promise.all([dataLoader, layoutLoader]).then(results => {
       const [data, layout] = results;
       this.data = data;
+      this.dataValues = new Map<string, number>(Object.entries(data.data));
+      this.buildPalettes();
       this.draw(layout, data);
     });
   }
 
+  buildPalettes() {
+    if(!this.data) {
+      return;
+    }
+    this.palette = 0; // Default palette is always first
+    // If colors provided as array, then only single palette
+    if(Array.isArray(this.data.colors)) {
+      this.palettes = [{colors: this.data.colors}];
+      this.palette = 0;
+      return;
+    }
+    const n_colors = this.data.colors;
+    if(this.data.palettes) {
+      this.data.palettes.forEach((def, index)=>{
+          if(def.colors) {
+            this.palettes.push(def);
+          } else {
+            if(def.name) {
+              const cc = get_palette(def.name, n_colors);
+              if(cc) {
+                def.colors = cc;
+                this.palettes.push(def);
+              } else {
+                console.warn("Unknown palette " + def.name + ":" + n_colors + "for palette " + index);
+              }
+            }
+          } 
+      });
+    }
+  }
+
   draw(layout: GeoJSON.GeoJsonObject, data: MapData) {
-    console.log(layout, data);
-   
+
     const $m = $('<div>');
     if(this.opts.width) {
       $m.css('width', this.opts.width + 'px');
@@ -89,9 +145,10 @@ export class ChoroMap {
     if(this.opts.height) {
       $m.css('height', this.opts.height + 'px');
     }
+    
     this.element.append($m);
     this.element.addClass('map-figure');
-    
+
     const map = L.map($m.get()[0], { 'zoom': 6, center: [46.71109, 1.7191036] });
 
     this.map = map;
@@ -101,37 +158,10 @@ export class ChoroMap {
       subdomains: ['a', 'b', 'c'],
     }).addTo(map);
 
-    const d = new Map<string, number>(Object.entries(data.data));
-    
-    const colors = data.colors;
-
-    const n_colors = data.colors.length;
-
-    const get_value = (feature?: Feature<Geometry, any>): number|undefined =>{
-      if (feature) {
-        const id = feature.properties?.code;
-        if (id) {
-          const value = d.get('' + id);
-          if (value && value >= 1  && value < n_colors) {
-            return value; // Value is 1-indexed
-          }
-        }
-      }
-      return undefined;
-    }
-
-    L.geoJSON(layout, {
-        style: (feature) => {
-          let color = '#EEEEEE';
-          const v = get_value(feature);
-          if(typeof(v) !== "undefined") {
-            color = colors[v - 1];;
-          }
-          return { 'color': color, 'stroke': false, 'fillOpacity': 0.6 }
-        },
+    this.layer = L.geoJSON(layout, {
         onEachFeature: (feature, layer)=> {
           let label = feature.properties?.nom;
-          const v = get_value(feature);
+          const v = this.getValue(feature);
           if(v) {
             label += "<br/>" + data.labels[v - 1];
           }
@@ -140,18 +170,90 @@ export class ChoroMap {
       },
     ).addTo(map);
 
+    if(this.palettes.length > 1) {
+      const $s = $('<select class="map-palettes">');
+      this.palettes.forEach((p, index) => {
+        const $o = $('<option value="'+index+'">');
+        const label = (p.label ? p.label : p.name) ?? 'Palette ' + index;
+        $o.text(label);
+        $s.append($o);
+      });
+      const self = this;
+      $s.on('change', function() {
+        self.palette = +($(this).val() ?? 0);
+        self.updateStyle();
+      });
+      this.element.append('<label class="map-selector-label me-1">'+ (this.opts.selectorLabel ?? 'Choose color') + '</label>');
+      this.element.append($s);
+    }
+
     const $legend = $('<div class="map-legend"/>');
     this.element.append($legend);
+
+    this.updateStyle();
+  }
+
+  getValue(feature?: Feature<Geometry, any>): number|undefined {
+    if (feature) {
+      const id = feature.properties?.code;
+      if (id) {
+        return this.dataValues.get('' + id);
+      }
+    }
+    return undefined;
+  }
+
+  
+
+  updateStyle() {
     
-    const $s = $('<ul class="list-inline">');
-    data.colors.forEach((value, index)=> {
-      const label = data.labels[index];
-      const $e = $('<li>');
-      $e.append('<span class="label">'+ label+'</span>');
-      $e.append('<span class="color" style="background-color:'+ value+'">');
-      $s.append($e);
-    });
-    $legend.append($s);
+    if(!this.data) {
+      return;
+    }
+
+    if(!this.layer) {
+      return;
+    }
+
+    let colors: string[];
+
+    try {
+      const p = this.palettes[this.palette];
+      if(p && p.colors) {
+        colors = p.colors;
+      } else {
+        console.warn("No useable palette found");
+        return;
+      }
+    } catch(e) {
+      console.warn("Unable to use palette "+ this.palette);
+      return;
+    }
+    
+    const n_colors = colors.length;
+
+    this.layer.setStyle((feature) => {
+      let color = '#EEEEEE';
+      const v = this.getValue(feature);
+      if(typeof(v) !== "undefined") {
+        if(v >= 1 && v <= n_colors) { // Value must be 1-indexed
+          color = colors[v - 1];
+        }
+      }
+        return { 'color': color, 'stroke': false, 'fillOpacity': 0.6 }
+      });
+
+      const $legend = this.element.find('.map-legend');
+      const $s = $('<ul class="list-inline">');
+      const labels = this.data.labels;
+      colors.forEach((value, index)=> {
+        const label = labels[index];
+        const $e = $('<li>');
+        $e.append('<span class="label">'+ label+'</span>');
+        $e.append('<span class="color" style="background-color:'+ value+'">');
+        $s.append($e);
+      });
+      $legend.append($s);
 
   }
 
