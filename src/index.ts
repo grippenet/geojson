@@ -242,6 +242,7 @@ export class ChoroMap {
       });
 
       const $legend = this.element.find('.map-legend');
+      $legend.empty();
       const $s = $('<ul class="list-inline">');
       const labels = this.data.labels;
       colors.forEach((value, index)=> {
