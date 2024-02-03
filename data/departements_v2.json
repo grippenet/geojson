@@ -1,0 +1,754 @@
+{
+    "layout": "departement",
+    "colors": 5,
+    "palettes": [
+        {
+            "colors": [
+                "#440154FF",
+                "#3B528BFF",
+                "#21908CFF",
+                "#5DC863FF",
+                "#FDE725FF"
+            ],
+            "label": "Viridis"
+        },
+        {
+            "name": "GnBu",
+            "label": "Vert-Bleu"
+        },
+        {
+            "name": "PuBu",
+            "label": "Violet-Bleu"
+        },
+        {
+            "name": "YlGn",
+            "label": "Jaune-Vert"
+        }
+    ],
+    "updated_at": 1706899857,
+    "variables": [
+        {
+            "color": "color_n",
+            "labels": [
+                "0 - 20",
+                "20 - 40",
+                "40 - 60",
+                "60 - 80",
+                ">= 80"
+            ],
+            "title": "Nombre de participants"
+        },
+        {
+            "color": "color_prop",
+            "value": "prop",
+            "labels": [
+                "0 - 2",
+                "2 - 4",
+                "4 - 6",
+                "6 - 8",
+                ">= 8"
+            ],
+            "popup": "{prop} Population={population}",
+            "title": "Participants pour 10 000 habitants"
+        }
+    ],
+    "layers": [
+        {
+            "data": {
+                "01": {
+                    "id": "01",
+                    "color_n": 2,
+                    "color_prop": 3,
+                    "prop": 5.8,
+                    "population": 657856
+                },
+                "02": {
+                    "id": "02",
+                    "color_n": 2,
+                    "color_prop": 2,
+                    "prop": 4,
+                    "population": 529374
+                },
+                "03": {
+                    "id": "03",
+                    "color_n": 2,
+                    "color_prop": 4,
+                    "prop": 7.2,
+                    "population": 335628
+                },
+                "04": {
+                    "id": "04",
+                    "color_n": 1,
+                    "color_prop": 5,
+                    "prop": 8.5,
+                    "population": 165451
+                },
+                "05": {
+                    "id": "05",
+                    "color_n": 1,
+                    "color_prop": 5,
+                    "prop": 8.5,
+                    "population": 140605
+                },
+                "06": {
+                    "id": "06",
+                    "color_n": 4,
+                    "color_prop": 4,
+                    "prop": 7.1,
+                    "population": 1097410
+                },
+                "07": {
+                    "id": "07",
+                    "color_n": 2,
+                    "color_prop": 5,
+                    "prop": 10.9,
+                    "population": 329325
+                },
+                "08": {
+                    "id": "08",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 4.4,
+                    "population": 269701
+                },
+                "09": {
+                    "id": "09",
+                    "color_n": 1,
+                    "color_prop": 4,
+                    "prop": 7.8,
+                    "population": 153954
+                },
+                "10": {
+                    "id": "10",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 5.1,
+                    "population": 311435
+                },
+                "11": {
+                    "id": "11",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 4.5,
+                    "population": 375217
+                },
+                "12": {
+                    "id": "12",
+                    "color_n": 1,
+                    "color_prop": 2,
+                    "prop": 3.9,
+                    "population": 279554
+                },
+                "13": {
+                    "id": "13",
+                    "color_n": 5,
+                    "color_prop": 3,
+                    "prop": 5.2,
+                    "population": 2048070
+                },
+                "14": {
+                    "id": "14",
+                    "color_n": 4,
+                    "color_prop": 5,
+                    "prop": 9.6,
+                    "population": 697547
+                },
+                "15": {
+                    "id": "15",
+                    "color_n": 1,
+                    "color_prop": 2,
+                    "prop": 2.8,
+                    "population": 144379
+                },
+                "16": {
+                    "id": "16",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 4.8,
+                    "population": 351718
+                },
+                "17": {
+                    "id": "17",
+                    "color_n": 3,
+                    "color_prop": 5,
+                    "prop": 9,
+                    "population": 655709
+                },
+                "18": {
+                    "id": "18",
+                    "color_n": 1,
+                    "color_prop": 4,
+                    "prop": 6.3,
+                    "population": 300933
+                },
+                "19": {
+                    "id": "19",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 5.4,
+                    "population": 239190
+                },
+                "21": {
+                    "id": "21",
+                    "color_n": 3,
+                    "color_prop": 5,
+                    "prop": 9.9,
+                    "population": 535078
+                },
+                "22": {
+                    "id": "22",
+                    "color_n": 3,
+                    "color_prop": 4,
+                    "prop": 7.8,
+                    "population": 603640
+                },
+                "23": {
+                    "id": "23",
+                    "color_n": 1,
+                    "color_prop": 1,
+                    "prop": 1.7,
+                    "population": 115995
+                },
+                "24": {
+                    "id": "24",
+                    "color_n": 2,
+                    "color_prop": 5,
+                    "prop": 9.2,
+                    "population": 412807
+                },
+                "25": {
+                    "id": "25",
+                    "color_n": 2,
+                    "color_prop": 4,
+                    "prop": 6.4,
+                    "population": 545209
+                },
+                "26": {
+                    "id": "26",
+                    "color_n": 2,
+                    "color_prop": 4,
+                    "prop": 7.7,
+                    "population": 517709
+                },
+                "27": {
+                    "id": "27",
+                    "color_n": 2,
+                    "color_prop": 3,
+                    "prop": 5.2,
+                    "population": 599668
+                },
+                "28": {
+                    "id": "28",
+                    "color_n": 2,
+                    "color_prop": 4,
+                    "prop": 6.3,
+                    "population": 431443
+                },
+                "29": {
+                    "id": "29",
+                    "color_n": 4,
+                    "color_prop": 4,
+                    "prop": 7.5,
+                    "population": 917179
+                },
+                "2A": {
+                    "id": "2A",
+                    "color_n": 1,
+                    "color_prop": 5,
+                    "prop": 8.7,
+                    "population": 160814
+                },
+                "2B": {
+                    "id": "2B",
+                    "color_n": 1,
+                    "color_prop": 4,
+                    "prop": 7.7,
+                    "population": 182887
+                },
+                "30": {
+                    "id": "30",
+                    "color_n": 3,
+                    "color_prop": 4,
+                    "prop": 7.2,
+                    "population": 751457
+                },
+                "31": {
+                    "id": "31",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 9.6,
+                    "population": 1415757
+                },
+                "32": {
+                    "id": "32",
+                    "color_n": 1,
+                    "color_prop": 4,
+                    "prop": 6.3,
+                    "population": 191819
+                },
+                "33": {
+                    "id": "33",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 8.6,
+                    "population": 1636391
+                },
+                "34": {
+                    "id": "34",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 8.7,
+                    "population": 1188973
+                },
+                "35": {
+                    "id": "35",
+                    "color_n": 4,
+                    "color_prop": 4,
+                    "prop": 6.9,
+                    "population": 1088855
+                },
+                "36": {
+                    "id": "36",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 5.9,
+                    "population": 218707
+                },
+                "37": {
+                    "id": "37",
+                    "color_n": 3,
+                    "color_prop": 4,
+                    "prop": 7.5,
+                    "population": 612119
+                },
+                "38": {
+                    "id": "38",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 9.5,
+                    "population": 1277513
+                },
+                "39": {
+                    "id": "39",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 5.8,
+                    "population": 258798
+                },
+                "40": {
+                    "id": "40",
+                    "color_n": 2,
+                    "color_prop": 3,
+                    "prop": 5.7,
+                    "population": 418122
+                },
+                "41": {
+                    "id": "41",
+                    "color_n": 2,
+                    "color_prop": 4,
+                    "prop": 7,
+                    "population": 329357
+                },
+                "42": {
+                    "id": "42",
+                    "color_n": 2,
+                    "color_prop": 3,
+                    "prop": 5.2,
+                    "population": 768508
+                },
+                "43": {
+                    "id": "43",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 5.7,
+                    "population": 227489
+                },
+                "44": {
+                    "id": "44",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 8.7,
+                    "population": 1445171
+                },
+                "45": {
+                    "id": "45",
+                    "color_n": 3,
+                    "color_prop": 4,
+                    "prop": 7.5,
+                    "population": 682304
+                },
+                "46": {
+                    "id": "46",
+                    "color_n": 1,
+                    "color_prop": 5,
+                    "prop": 9.7,
+                    "population": 174670
+                },
+                "47": {
+                    "id": "47",
+                    "color_n": 1,
+                    "color_prop": 4,
+                    "prop": 6,
+                    "population": 330844
+                },
+                "48": {
+                    "id": "48",
+                    "color_n": 1,
+                    "color_prop": 4,
+                    "prop": 6.5,
+                    "population": 76633
+                },
+                "49": {
+                    "id": "49",
+                    "color_n": 3,
+                    "color_prop": 3,
+                    "prop": 5.7,
+                    "population": 820713
+                },
+                "50": {
+                    "id": "50",
+                    "color_n": 2,
+                    "color_prop": 3,
+                    "prop": 5,
+                    "population": 495093
+                },
+                "51": {
+                    "id": "51",
+                    "color_n": 2,
+                    "color_prop": 3,
+                    "prop": 4.9,
+                    "population": 566659
+                },
+                "52": {
+                    "id": "52",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 5.8,
+                    "population": 171798
+                },
+                "53": {
+                    "id": "53",
+                    "color_n": 1,
+                    "color_prop": 2,
+                    "prop": 3.9,
+                    "population": 306538
+                },
+                "54": {
+                    "id": "54",
+                    "color_n": 4,
+                    "color_prop": 5,
+                    "prop": 8.5,
+                    "population": 732590
+                },
+                "55": {
+                    "id": "55",
+                    "color_n": 1,
+                    "color_prop": 2,
+                    "prop": 3.3,
+                    "population": 183001
+                },
+                "56": {
+                    "id": "56",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 11.1,
+                    "population": 764161
+                },
+                "57": {
+                    "id": "57",
+                    "color_n": 3,
+                    "color_prop": 3,
+                    "prop": 5.1,
+                    "population": 1049155
+                },
+                "58": {
+                    "id": "58",
+                    "color_n": 1,
+                    "color_prop": 4,
+                    "prop": 6.9,
+                    "population": 202670
+                },
+                "59": {
+                    "id": "59",
+                    "color_n": 5,
+                    "color_prop": 3,
+                    "prop": 4.9,
+                    "population": 2607746
+                },
+                "60": {
+                    "id": "60",
+                    "color_n": 2,
+                    "color_prop": 2,
+                    "prop": 2.9,
+                    "population": 829699
+                },
+                "61": {
+                    "id": "61",
+                    "color_n": 1,
+                    "color_prop": 2,
+                    "prop": 2.5,
+                    "population": 278475
+                },
+                "62": {
+                    "id": "62",
+                    "color_n": 3,
+                    "color_prop": 2,
+                    "prop": 2.9,
+                    "population": 1462167
+                },
+                "63": {
+                    "id": "63",
+                    "color_n": 4,
+                    "color_prop": 5,
+                    "prop": 9.5,
+                    "population": 661852
+                },
+                "64": {
+                    "id": "64",
+                    "color_n": 3,
+                    "color_prop": 4,
+                    "prop": 6.4,
+                    "population": 687240
+                },
+                "65": {
+                    "id": "65",
+                    "color_n": 1,
+                    "color_prop": 4,
+                    "prop": 6.1,
+                    "population": 229788
+                },
+                "66": {
+                    "id": "66",
+                    "color_n": 3,
+                    "color_prop": 5,
+                    "prop": 8.5,
+                    "population": 482765
+                },
+                "67": {
+                    "id": "67",
+                    "color_n": 4,
+                    "color_prop": 4,
+                    "prop": 6.7,
+                    "population": 1148073
+                },
+                "68": {
+                    "id": "68",
+                    "color_n": 3,
+                    "color_prop": 3,
+                    "prop": 5.9,
+                    "population": 767842
+                },
+                "69": {
+                    "id": "69",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 9,
+                    "population": 1883437
+                },
+                "70": {
+                    "id": "70",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 5.1,
+                    "population": 234601
+                },
+                "71": {
+                    "id": "71",
+                    "color_n": 2,
+                    "color_prop": 4,
+                    "prop": 6.4,
+                    "population": 551063
+                },
+                "72": {
+                    "id": "72",
+                    "color_n": 2,
+                    "color_prop": 3,
+                    "prop": 4.2,
+                    "population": 566993
+                },
+                "73": {
+                    "id": "73",
+                    "color_n": 3,
+                    "color_prop": 5,
+                    "prop": 10.2,
+                    "population": 439750
+                },
+                "74": {
+                    "id": "74",
+                    "color_n": 4,
+                    "color_prop": 5,
+                    "prop": 8.4,
+                    "population": 835206
+                },
+                "75": {
+                    "id": "75",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 12.2,
+                    "population": 2145906
+                },
+                "76": {
+                    "id": "76",
+                    "color_n": 4,
+                    "color_prop": 4,
+                    "prop": 6.2,
+                    "population": 1254739
+                },
+                "77": {
+                    "id": "77",
+                    "color_n": 4,
+                    "color_prop": 3,
+                    "prop": 5,
+                    "population": 1428636
+                },
+                "78": {
+                    "id": "78",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 9.3,
+                    "population": 1449723
+                },
+                "79": {
+                    "id": "79",
+                    "color_n": 3,
+                    "color_prop": 5,
+                    "prop": 10.9,
+                    "population": 374481
+                },
+                "80": {
+                    "id": "80",
+                    "color_n": 2,
+                    "color_prop": 3,
+                    "prop": 4.2,
+                    "population": 568748
+                },
+                "81": {
+                    "id": "81",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 4.1,
+                    "population": 391066
+                },
+                "82": {
+                    "id": "82",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 4.6,
+                    "population": 262316
+                },
+                "83": {
+                    "id": "83",
+                    "color_n": 5,
+                    "color_prop": 4,
+                    "prop": 7.8,
+                    "population": 1085189
+                },
+                "84": {
+                    "id": "84",
+                    "color_n": 3,
+                    "color_prop": 4,
+                    "prop": 7.5,
+                    "population": 561941
+                },
+                "85": {
+                    "id": "85",
+                    "color_n": 2,
+                    "color_prop": 3,
+                    "prop": 5.6,
+                    "population": 692705
+                },
+                "86": {
+                    "id": "86",
+                    "color_n": 2,
+                    "color_prop": 4,
+                    "prop": 6.4,
+                    "population": 439332
+                },
+                "87": {
+                    "id": "87",
+                    "color_n": 2,
+                    "color_prop": 5,
+                    "prop": 8.1,
+                    "population": 372123
+                },
+                "88": {
+                    "id": "88",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 5.2,
+                    "population": 362397
+                },
+                "89": {
+                    "id": "89",
+                    "color_n": 2,
+                    "color_prop": 4,
+                    "prop": 7.2,
+                    "population": 334156
+                },
+                "90": {
+                    "id": "90",
+                    "color_n": 1,
+                    "color_prop": 3,
+                    "prop": 5,
+                    "population": 140120
+                },
+                "91": {
+                    "id": "91",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 10.2,
+                    "population": 1306118
+                },
+                "92": {
+                    "id": "92",
+                    "color_n": 5,
+                    "color_prop": 5,
+                    "prop": 11.1,
+                    "population": 1626213
+                },
+                "93": {
+                    "id": "93",
+                    "color_n": 4,
+                    "color_prop": 3,
+                    "prop": 4.3,
+                    "population": 1655422
+                },
+                "94": {
+                    "id": "94",
+                    "color_n": 5,
+                    "color_prop": 4,
+                    "prop": 7.5,
+                    "population": 1407972
+                },
+                "95": {
+                    "id": "95",
+                    "color_n": 4,
+                    "color_prop": 3,
+                    "prop": 5.1,
+                    "population": 1251804
+                },
+                "972": {
+                    "id": "972",
+                    "color_n": 1,
+                    "color_prop": 1,
+                    "prop": 0.3,
+                    "population": 361225
+                },
+                "973": {
+                    "id": "973",
+                    "color_n": 1,
+                    "color_prop": 1,
+                    "prop": 0.4,
+                    "population": 285133
+                },
+                "974": {
+                    "id": "974",
+                    "color_n": 1,
+                    "color_prop": 1,
+                    "prop": 0.3,
+                    "population": 863083
+                }
+            }
+        }
+    ]
+}
