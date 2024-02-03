@@ -1,16 +1,57 @@
 
 .map-figure {
-    margin: 1em auto;
-    padding: 1em;
+    margin: 1rem auto;
+    padding: 1rem;
     border: 1px solid #EEE;
+}
+
+.map-vars {
+    margin: 0;
+    padding:0;
+}
+
+.map-vars, .map-var {
+    display: inline-block;
+    padding: .3rem;
+}
+
+.map-var {
+    border-radius: .3em;
+    border: 1px solid #EEE;
+    margin-right: .2rem;
+    cursor: pointer;
+}
+
+.map-vars .active {
+    background-color: #f58220;
+    border-color: #ca6510;
 }
 
 .map-legend ul, .map-legend li {
     display: inline-block;
 }
 
-.map-legend ul {
-    padding: .3em;
+.map-vars , .map-legend ul {
+    padding: .3rem;
+}
+
+.map-color-selector {
+    margin: 0;
+    padding: .2em;
+}
+
+.map-palettes {
+    margin-left: 1em;
+    padding: .2em .4em;
+    border: 1xp solid #EEE;
+}
+
+.map-palettes option {
+    padding: .2em;
+}
+
+.map-legend {
+    padding: .2em .1em 0 .2em;
 }
 
 .map-legend .color {
@@ -19,8 +60,17 @@
  height: 1em;   
 }
 
+.map-legend ul {
+    padding: 0;
+    margin: 0;
+}
+
 .map-legend .label {
     padding: .1em;
-    margin-left: .8em;
-    vertical-align: text-bottom;
+    margin-left: .8rem;
+    vertical-align: top;
+}
+
+.map-popup-content .feature-label {
+    font-weight: bold;
 }

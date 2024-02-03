@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-   <link rel="stylesheet" href="dist/style.css" crossorigin=""/>
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css" crossorigin=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
   </head>
   <body>
@@ -13,10 +13,13 @@
       <div id="map-canton"></div>
       <div id="map-dep"></div>
       <div id="map-region"></div>
+      <div id="map-dep-v2"></div>
+      <div id="map-region-v2"></div>
     </div>
     <script type="module">
       import { ChoroMap } from 'src/index.ts';
       
+
       const maps = [
         { 
          'id': "map-canton",
@@ -33,17 +36,36 @@
           'data': 'data/regions-2.json',
          'layout': 'maps/regions.geojson',
         },
+        { 
+         'id': "map-dep-v2",
+          'data': 'data/departements_v2.json',
+         'layout': 'maps/departements.geojson',
+        },
+         { 
+         'id': "map-region-v2",
+          'data': 'data/regions_v2.json',
+         'layout': 'maps/regions.geojson',
+        },
       ];
       
       
       const opts = {
-         width: 600,
-        height: 800,
+        width: 600,
+        height: 600,
       };
 
       maps.forEach(m => {
         const o = { ...opts, ...m};
-        const map = new ChoroMap($('#' + m.id), o);
+
+        const $e = $('#' + m.id);
+
+        const fid = m.id + '-figure';
+        const $f = $('<figure id="'+fid+'">');
+        $e.append('<span>' + m.data +'</span>');
+        $e.append('<span>' + m.layout +'</span>');
+        $e.append($f);
+
+        const map = new ChoroMap($f, o);
         map.load();
       });
 
