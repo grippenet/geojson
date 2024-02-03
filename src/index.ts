@@ -49,7 +49,7 @@ export type LayerData = Record<string, LayerDataAttributes>;
 // MapData as it can be loaded
 export interface InputMapData {
   data?: Record<string, number> // Old fashion single data view
-  colors: number | string[] // Old fashion single data view
+  colors: number | string[] 
   labels?: string[]
   variables?: Variable[] // List of variable to show
   palettes?: ColorPalette[]
