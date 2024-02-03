@@ -1,4 +1,11 @@
+# 0.3
 
+- New data format allowing to provides several variables and several datasets (each with values for each feature).
+- Variables can have title and popup template (with `{name}` syntax)
+- Show variable selector if several variables
+- Add several classes to generated element to provide more control on ui
+- Improve UI
+  
 # 0.2.1
 
 - Add Opacity, default at map level, data level and for each palette
